@@ -2,10 +2,11 @@
   "name": "nodejs-hw",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "type": "module",
-    "div": "nodemon src/index.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,7 +16,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/NataliaBielik1/nodejs-hw/issues"
   },
@@ -25,5 +25,12 @@
     "eslint": "^10.0.0",
     "globals": "^17.3.0",
     "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "pino-http": "^11.0.0",
+    "pino-pretty": "^13.1.3"
   }
 }
