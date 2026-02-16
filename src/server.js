@@ -2,7 +2,9 @@ import 'dotenv/config';
 import cors from "cors";
 import express from "express";
 import pino from 'pino';
+
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 app.use(
@@ -41,6 +43,7 @@ app.use((error, req, res, next) => {
   console.error(error);
   res.status(500).json({ "message": "повідомлення про помилку" });
 });
+
 
 const PORT = Number.parseInt(process.env.PORT, 10) || 8080;
 
