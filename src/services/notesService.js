@@ -22,3 +22,8 @@ export const updateNote = async (noteId, payload, options = {}) => {
     });
     return note;
 };
+
+export const getAllNotes = async () => {
+    const notes = await Note.find();
+    return notes;
+};
