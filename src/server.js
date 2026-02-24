@@ -22,7 +22,7 @@ const setupServer = async () => {
     app.use(logger);
 
     // Routes
-    app.use('/notes', notesRouter);
+    app.use('/', notesRouter);
 
     app.get('/', (req, res) => {
         res.json({ message: 'Server is running' });
