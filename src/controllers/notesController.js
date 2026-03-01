@@ -62,10 +62,33 @@ export const updateNote = async (req, res, next) => {
 };
 
 export const getAllNotes = async (req, res, next) => {
-    try {
-        const notes = await Note.find();
+    const { tag, search, page = 1, perPage = 10 } = req.query;
 
-        res.status(200).json(notes);
+    try {
+        const filter = {};
+
+        if (tag) {
+            filter.tag = tag;
+        }
+
+        if (search) {
+            filter.$text = { $search: search };
+        }
+
+        const skip = (Number(page) - 1) * Number(perPage);
+        const limit = Number(perPage);
+
+        const notes = await Note.find(filter).skip(skip).limit(limit);
+        const totalNotes = await Note.countDocuments(filter);
+        const totalPages = Math.ceil(totalNotes / limit);
+
+        res.status(200).json({
+            page: Number(page),
+            perPage: Number(perPage),
+            totalNotes,
+            totalPages,
+            notes,
+        });
     } catch (error) {
         next(error);
     }
