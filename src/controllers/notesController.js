@@ -77,8 +77,8 @@ export const getAllNotes = async (req, res, next) => {
         }
 
         if (search) {
-            notesQuery.where({ $text: { $search: search } });
-            countQuery.where({ $text: { $search: search } });
+            notesQuery.find({ $text: { $search: search } });
+            countQuery.find({ $text: { $search: search } });
         }
 
         const [notes, totalNotes] = await Promise.all([
