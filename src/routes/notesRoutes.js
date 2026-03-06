@@ -6,8 +6,11 @@ import {
     deleteNote,
     updateNote,
 } from '../controllers/notesController.js';
+import { authenticate } from '../middleware/authenticate.js';
 
 const router = Router();
+
+router.use(authenticate);
 
 router.get('/notes', getAllNotes);
 
