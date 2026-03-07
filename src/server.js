@@ -3,6 +3,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import { errors } from 'celebrate';
+
 import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
@@ -25,7 +27,7 @@ const setupServer = async () => {
     app.use(logger);
 
     // Routes
-    app.use('/auth', authRouter);
+    app.use(authRouter);
     app.use(notesRouter);
 
     app.get('/', (req, res) => {
@@ -33,6 +35,7 @@ const setupServer = async () => {
     });
 
     // Error handling
+    app.use(errors());
     app.use(notFoundHandler);
     app.use(errorHandler);
 
