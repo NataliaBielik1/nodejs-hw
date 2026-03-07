@@ -27,6 +27,10 @@ router.post('/notes', celebrate({ body: createNoteSchema }), createNote);
 
 router.delete('/notes/:noteId', celebrate({ params: noteIdSchema }), deleteNote);
 
-router.patch('/notes/:noteId', celebrate(updateNoteSchema), updateNote);
+router.patch(
+    '/notes/:noteId',
+    celebrate({ params: noteIdSchema, body: updateNoteSchema }),
+    updateNote,
+);
 
 export default router;

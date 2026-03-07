@@ -26,11 +26,8 @@ export const createNoteSchema = Joi.object({
     tag: Joi.string().valid(...TAGS),
 });
 
-export const updateNoteSchema = {
-    params: noteIdSchema,
-    body: Joi.object({
-        title: Joi.string().min(1),
-        content: Joi.string().allow(''),
-        tag: Joi.string().valid(...TAGS),
-    }).min(1),
-};
+export const updateNoteSchema = Joi.object({
+    title: Joi.string().min(1),
+    content: Joi.string().allow(''),
+    tag: Joi.string().valid(...TAGS),
+}).min(1);
