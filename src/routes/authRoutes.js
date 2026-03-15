@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { celebrate } from 'celebrate';
-import { registerUser, loginUser, refreshUserSession, logoutUser } from '../controllers/authController.js';
-import { registerUserSchema, loginUserSchema } from '../validations/authValidation.js';
+import { registerUser, loginUser, refreshUserSession, logoutUser, requestResetEmail, resetPassword } from '../controllers/authController.js';
+import { registerUserSchema, loginUserSchema, requestResetEmailSchema, resetPasswordSchema } from '../validations/authValidation.js';
+import { authenticate } from '../middleware/authenticate.js';
 
 const router = Router();
 
@@ -12,5 +13,9 @@ router.post('/login', celebrate({ body: loginUserSchema }), loginUser);
 router.post('/refresh', refreshUserSession);
 
 router.post('/logout', logoutUser);
+
+router.post('/request-reset-email', celebrate({ body: requestResetEmailSchema }), requestResetEmail);
+
+router.post('/reset-password', celebrate({ body: resetPasswordSchema }), resetPassword);
 
 export default router;
