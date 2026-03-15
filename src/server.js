@@ -11,6 +11,7 @@ import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import notesRouter from './routes/notesRoutes.js';
 import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ const setupServer = async () => {
 
     // Routes
     app.use(authRouter);
+    app.use('/users', userRouter);
     app.use(notesRouter);
 
     app.get('/', (req, res) => {

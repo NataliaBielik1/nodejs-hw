@@ -1,6 +1,20 @@
 import { randomBytes } from 'crypto';
+import jwt from 'jsonwebtoken';
 import { Session } from '../models/session.js';
 import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/time.js';
+
+export const generateJwtToken = (user) => {
+    return jwt.sign(
+        {
+            sub: user._id,
+            email: user.email,
+        },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: '15m',
+        },
+    );
+};
 
 export const createSession = async (userId) => {
     const accessToken = randomBytes(30).toString('base64');
