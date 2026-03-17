@@ -37,8 +37,8 @@ const setupServer = async () => {
     });
 
     // Error handling
-    app.use(errors());
     app.use(notFoundHandler);
+    app.use(errors());
     app.use(errorHandler);
 
     const PORT = process.env.PORT || 3000;
