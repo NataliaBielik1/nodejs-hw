@@ -29,7 +29,7 @@ const setupServer = async () => {
 
     // Routes
     app.use(authRouter);
-    app.use('/users', userRouter);
+    app.use(userRouter);
     app.use(notesRouter);
 
     app.get('/', (req, res) => {
